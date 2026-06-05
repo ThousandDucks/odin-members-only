@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/membership.css">
+</head>
+<body>
+    <%- include('partials/navbar') %>
+
+    <div class="rat-container">
+        <div class="speech-bubble">
+           <p>
+                To upgrade your membership answer my riddle.
+            </p>
+
+            <p>
+                I am given to you, but never owned.<br>
+                I let you in, but also keep others out.<br>
+                What am I?
+            </p>
+
+            <p class="answer">
+                Answer: <span class="upside">access</span>
+            </p>
+
+            <% if (error) { %>
+                <div class="error-box">
+                    <%= error %>
+                </div>
+            <% } %>
+
+            <form action="/upgrade-membership" method="POST">
+                <input type="text" name="answer" placeholder="Your answer..." required />
+                <button type="submit">Answer</button>
+            </form>
+        </div>
+
+        <div class="rat">
+            <img class="rat-img" src="/images/rat.svg" alt="rat" />
+        </div>
+    </div>
+</body>
+</html>

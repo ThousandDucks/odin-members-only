@@ -1,9 +1,30 @@
-<nav>
+<nav class="links">
     <a href="/" class="brand">
         <div class="brand-name">Members Only</div>
     </a>
-    <div class="links">
-        <button>Log in</button>
-        <button>Sign up</button>
-    </div>
+
+    <% if (currentUser) { %>
+        <div class="links">
+            <% if (currentUser.membership_status !== "member" && currentUser.membership_status !== "admin") { %>
+                <a href="/upgrade-membership" class="upgrade-bttn">
+                    Upgrade Membership
+                </a>
+            <% } %>
+
+            <a href="/new-message" class="new-message-bttn">
+                Create Message
+            </a>
+
+            <form action="/log-out" method="POST">
+                <button class="log-out-bttn">
+                    Log out
+                </button>
+            </form>
+        </div>
+    <% } else { %>
+        <div class="links">
+            <a href="/log-in" class="log-in-bttn">Log in</a>
+            <a href="/sign-up" class="sign-up-bttn">Sign up</a>
+        </div>
+    <% } %>
 </nav>

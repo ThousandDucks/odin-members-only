@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/index.css">
+</head>
+<body>
+    <%- include('partials/navbar') %>
+    
+    <main>
+        <h1 class="index-header">Message Board</h1>
+
+        <div class="message-card-container">
+            <% messages.forEach(message => { %>
+                <div class="message-card">
+
+                    <div class="user-detail">
+                        <div>
+                            <% if (currentUser && (currentUser.membership_status === "member" || currentUser.membership_status === "admin")) { %>
+                                <%= message.first_name %> <%= message.last_name %>
+                                <span class="dot">•</span>
+                                <span class="message-username"><%= message.username %></span>
+                            <% } else { %>
+                                Anonymous User
+                            <% } %>
+                        </div>
+
+                        <div class="message-timestamp">
+                            <%= new Date(message.timestamp).toLocaleString("en-GB", {
+                                day: "numeric",
+                                month: "short",
+                                year: "numeric",
+                                hour: "2-digit",
+                                minute: "2-digit"
+                            }) %>
+                        </div>
+
+                        <% if (currentUser && currentUser.membership_status === "admin") { %>
+                            <form action="/messages/<%= message.id %>/delete" method="POST">
+                                <button class="delete-button" type="submit">
+                                    Delete
+                                </button>
+                            </form>
+                        <% } %>
+                    </div>
+
+                    <div class="message-content">
+                        <h2><%= message.title %></h2>
+                        <div><%= message.content %></div>
+                    </div>
+
+                </div>
+            <% }) %>
+        </div>
+    </main>
+</body>
+</html>

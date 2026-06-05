@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/log-in.css">
+</head>
+<body>
+    <%- include('partials/navbar') %>
+
+    <main>
+        <div class="log-in-container">
+            <h1>Log In</h1>
+            <form action="/log-in" method="POST">
+                <div class="form-item">
+                    <label for="username">Username</label>
+                    <input id="username" name="username" type="text" required/>
+                </div>
+                <div class="form-item">
+                    <label for="password">Password</label>
+                    <input id="password" name="password" type="password" required/>
+                </div>
+                <button type="submit">Submit</button>
+            </form>
+            <a href="/" class="back-button">← Back</a>
+        </div>
+    </main>
+</body>
+</html>
